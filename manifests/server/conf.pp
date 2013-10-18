@@ -1,4 +1,4 @@
-# Define: bind::server::conf
+# Class: bind::server::conf
 #
 # ISC BIND server template-based configuration definition.
 #
@@ -53,7 +53,7 @@
 #   Array of absolute paths to named.conf include files. Default: empty
 #
 # Sample Usage :
-#  bind::server::conf { '/etc/named.conf':
+#  class { bind::server::conf:
 #    acls => {
 #      'rfc1918' => [ '10/8', '172.16/12', '192.168/16' ],
 #    },
@@ -73,7 +73,7 @@
 #    }
 #  }
 #
-define bind::server::conf (
+class bind::server::conf (
   $named_conf         = '/etc/named.conf',
   $acls               = {},
   $masters            = {},
