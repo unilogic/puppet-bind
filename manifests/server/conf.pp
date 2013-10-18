@@ -3,6 +3,8 @@
 # ISC BIND server template-based configuration definition.
 #
 # Parameters:
+#  $named_conf:
+#   named.conf path
 #  $acls:
 #   Hash of client ACLs, name as key and array of config lines. Default: empty
 #  $masters:
@@ -72,6 +74,7 @@
 #  }
 #
 define bind::server::conf (
+  $named_conf         = '/etc/named.conf',
   $acls               = {},
   $masters            = {},
   $listen_on_port     = '53',
@@ -99,7 +102,7 @@ define bind::server::conf (
 ) {
 
   # Everything is inside a single template
-  file { $title:
+  file { $named_conf:
     notify  => Class['bind::service'],
     content => template('bind/named.conf.erb'),
   }
